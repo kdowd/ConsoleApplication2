@@ -1,34 +1,30 @@
-// ConsoleApplication2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+#include <iostream>   
 
-#include <iostream>
-#include <vector>
+#include <cmath>   
+
+
+
 using namespace std;
 
 
-struct myStruct {
-	int i{};
-	string s{};
-	bool b{};
 
-	myStruct() {
-		cout << 123 << endl;
+int main() {
+	int a = 8;
+	int b = 2;
+	int c = a + b;
+
+	cout << "Square = " << pow(a, b) << endl;
+	cout << "Square Root = " << sqrt(c) << endl;
+
+
+	if (isgreater(a, b)) {
+
+		cout << "a is greater than b" << "\n";
 	}
-};
+	else {
+		cout << "a is not greater than b" << "\n";
+	}
 
-struct point {
-	int x;
-	int y;
-};
 
-int main()
-{
-	struct myStruct test;
-	test.b = false;
-
-	vector<myStruct> blah(5);
-
-	std::cout << "Hello Worldy!\n";
-	std::cout << "Hello Worldy!\n";
-	std::cout << "Hello Worldy!\n";
+	system("pause");
 }

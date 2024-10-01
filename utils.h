@@ -1,7 +1,41 @@
 ﻿#pragma once
 
+#include <iostream>
 #include <vector>
-std::vector<float> forceSaddlePointVector() {
+#include <algorithm>
+
+
+int getIndexByValue(std::vector<int>& v, int val)
+{
+	auto it = find(v.begin(), v.end(), val);
+
+	if (it != v.end())
+	{
+		int index = it - v.begin();
+		return index;
+	}
+	else {
+		return -1;
+	}
+}
+
+std::vector<int> dummyBoard() {
+
+	std::vector<int> saddlePoints{
+		70,4,40,50,0,
+		13,8,25,33,7,
+		2,61,4,67,53,
+		50,60,11,96,87,
+		87,83,43,70,58
+	};
+
+
+	return saddlePoints;
+}
+
+
+
+std::vector<float> realSaddlePointVector() {
 
 	std::vector<float> saddlePoints{ -0.08, 0.55, 0.98, 1.21, 1.24, 1.07, 0.7, 0.13, -0.64,
 			-0.69, -0.06,0.37,0.6,0.63,0.46,0.09,-0.48,-1.25,
@@ -14,4 +48,18 @@ std::vector<float> forceSaddlePointVector() {
 			0.64,1.27,1.7,1.93,1.96,1.79,1.42,0.85,0.08 };
 
 	return saddlePoints;
+}
+
+
+void asort() {
+	int arr[] = { 60,10,80,40,30,20,50,90,70 };
+
+	std::sort(arr, arr + 9, std::less<int>());
+
+	for (int i = 0; i < 9; i++) {
+		std::cout << arr[i] << " ";
+	}
+
+	std::cout << std::string(50, '#') << std::endl;
+
 }

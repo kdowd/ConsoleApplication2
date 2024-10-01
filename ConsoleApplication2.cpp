@@ -5,29 +5,36 @@
 #include <vector>
 #include <algorithm>
 #include <iomanip>
+
+#include "utils.h"
+
 using namespace std;
 
 
 
 vector<int> board{};
 const int boardSize = 5;
+const int maxRandom = 100;
 //board.reserve(20);
 
+
+
 vector<int> makeBoard() {
+	vector<int> temp{};
 	int tempSize = pow(boardSize, 2);
-	srand(time(0));
+	//srand(time(0));
 	for (int i = 0; i < tempSize; i++) {
-		board.push_back(rand() % 5);
+		temp.push_back(rand() % maxRandom);
 	}
 
 	//cout << "board size = " << board.size() << endl;
 
 
-	auto start = board.begin();
-	auto end = board.end();
+	auto start = temp.begin();
+	auto end = temp.end();
 	random_shuffle(start, end);
 
-	return board;
+	return temp;
 }
 
 
@@ -50,37 +57,57 @@ void drawBoard() {
 
 vector<int> findLowestInRow() {
 	int counter{};
-	cout << string(50, '*') << endl << endl;
+
 	vector<int> listOfLowestPoints{};
 	vector<int> tempVector{};
 	for (auto i : board) {
 		counter++;
-		cout << i << " ";
 		tempVector.push_back(i);
 
 		if (counter % boardSize == 0) {
 
-			sort(tempVector.begin(), tempVector.end());
+			sort(tempVector.begin(), tempVector.end(), less<int>{});
 			listOfLowestPoints.push_back(tempVector.front());
 			tempVector.clear();
-			cout << endl;
 		}
 	}
-	cout << string(50, '*') << endl;
-
+	//https://numbergenerator.org/random-64-bit-binary-number
 	return listOfLowestPoints;
 }
 
+vector<int> findLowestInRowByIndex() {
+	int counter{};
+
+	vector<int> listOfLowestPoints{};
+	vector<int> tempVector{};
+	for (auto i : board) {
+		counter++;
+		tempVector.push_back(i);
+
+		if (counter % boardSize == 0) {
+
+			sort(tempVector.begin(), tempVector.end(), less<int>{});
+			listOfLowestPoints.push_back(getIndexByValue(board, tempVector.front()));
+			tempVector.clear();
+		}
+	}
+	//https://numbergenerator.org/random-64-bit-binary-number
+	return listOfLowestPoints;
+}
+
+
+
 int main()
 {
-
-	makeBoard();
+	//board = makeBoard();
+	board = dummyBoard();
 	//debugBoard();
 	drawBoard();
-	vector<int> lowestPoints = findLowestInRow();
+	vector<int> lowestPoints = findLowestInRowByIndex();
 
 	for (auto i : lowestPoints) {
 		cout << "Lowest Point = " << i << endl;
 	}
 
 }
+

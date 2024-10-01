@@ -28,5 +28,7 @@ int main()
 
 	vector<myStruct> blah(5);
 
-	std::cout << "Hello World!\n";
+	std::cout << "Hello Worldy!\n";
+	std::cout << "Hello Worldy!\n";
+	std::cout << "Hello Worldy!\n";
 }

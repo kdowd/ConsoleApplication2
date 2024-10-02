@@ -55,7 +55,7 @@ void drawBoard() {
 	}
 }
 
-vector<int> findLowestInRow() {
+vector<int> findLowestInRowByValue() {
 	int counter{};
 
 	vector<int> listOfLowestPoints{};
@@ -95,6 +95,44 @@ vector<int> findLowestInRowByIndex() {
 	return listOfLowestPoints;
 }
 
+void findIfLowestInColumn(vector<int>& lp) {
+	// this is working
+
+	for (auto i : lp) {
+		int currentIndex = i;
+
+		cout << currentIndex << " == " << board.at(currentIndex) << " ^^^ " << endl;
+
+		for (int j = 1; j <= 5; j++) {
+			int nextNum = currentIndex + j;
+			if (nextNum % 5 != 0) {
+				cout << nextNum << endl;
+
+			}
+			else {
+				break;
+			}
+
+		}
+
+		// j is now dead
+		for (int j = 1; j <= 5; j++) {
+			int previousNum = currentIndex - j;
+
+			if (previousNum >= 0 && previousNum % 5 != 4) {
+				cout << previousNum << endl;
+			}
+			else {
+				break;
+			}
+
+		}
+
+	}
+
+
+}
+
 
 
 int main()
@@ -103,11 +141,10 @@ int main()
 	board = dummyBoard();
 	//debugBoard();
 	drawBoard();
-	vector<int> lowestPoints = findLowestInRowByIndex();
+	vector<int> lowestPointsByValue = findLowestInRowByValue();
+	vector<int> lowestPointsByIndex = findLowestInRowByIndex();
 
-	for (auto i : lowestPoints) {
-		cout << "Lowest Point = " << i << endl;
-	}
+	findIfLowestInColumn(lowestPointsByIndex);
 
 }
 
